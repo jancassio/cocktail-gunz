@@ -26,7 +26,7 @@
 
 package cocktail.core.gunz 
 {
-	import cocktail.core.gunz.Bullet;			
+	import cocktail.core.gunz.Bullet;				
 
 	/**
 	 * Base Trigger class.
@@ -38,8 +38,8 @@ package cocktail.core.gunz
 			CONSTANTS
 		--------------------------------------------------------------------- */
 		
-		private static const LISTEN		: String = "listen";
-		private static const UNLISTEN	: String = "unlisten";
+		private static const LISTEN : String = "listen";
+		private static const UNLISTEN : String = "unlisten";
 		
 		
 		
