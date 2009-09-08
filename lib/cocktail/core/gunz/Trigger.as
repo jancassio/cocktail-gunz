@@ -48,7 +48,7 @@ package cocktail.core.gunz
 		
 		
 		/* ---------------------------------------------------------------------
-			TIMES / LISTEN / UNLISTEN / HANDLE
+			TIMES / ONCE / LISTEN / UNLISTEN / HANDLE
 		--------------------------------------------------------------------- */
 		
 		/**
@@ -73,6 +73,18 @@ package cocktail.core.gunz
 			_times = times;
 			_cached = [];
 			
+			return this;
+		}
+		
+		/**
+		 * Auto destroy all previously listeners -- called after the last
+		 * "listen" or "time" call -- after its first execution, it is, you
+		 * don't need to worry about removing listeners.
+		 * @return	The trigger reference for re-use.
+		 */
+		public function once() : Trigger
+		{
+			times( 1 );
 			return this;
 		}
 		
