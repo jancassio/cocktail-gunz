@@ -9,11 +9,17 @@ package cocktail.core.gunz
 	public class Trigger 
 	{
 		/* ---------------------------------------------------------------------
-			VARS
+			CONSTANTS
 		--------------------------------------------------------------------- */
 		
 		private static const LISTEN		: String = "listen";
-		private static const UNLISTN	: String = "unlisten";
+		private static const UNLISTEN	: String = "unlisten";
+		
+		
+		
+		/* ---------------------------------------------------------------------
+			VARS
+		--------------------------------------------------------------------- */
 		
 		private var _mode : String;
 		private var _cached : Array;
@@ -88,7 +94,7 @@ package cocktail.core.gunz
 		 */
 		public function get unlisten () : Trigger
 		{
-			_mode = UNLISTN;
+			_mode = UNLISTEN;
 			return this;
 		}
 		
@@ -107,7 +113,7 @@ package cocktail.core.gunz
 			params;
 			if ( _mode == LISTEN )
 				_collect ( type, handler, params );
-			else if ( _mode == UNLISTN )
+			else if ( _mode == UNLISTEN )
 				_purge ( type, handler );
 		}
 		
