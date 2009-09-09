@@ -38,8 +38,8 @@ package cocktail.core.gunz
 			CONSTANTS
 		--------------------------------------------------------------------- */
 		
-		private static const LISTEN : String = "listen";
-		private static const UNLISTEN : String = "unlisten";
+		private static const _LISTEN : String = "listen";
+		private static const _UNLISTEN : String = "unlisten";
 		
 		
 		
@@ -79,11 +79,11 @@ package cocktail.core.gunz
 		
 		/**
 		 * Define the number of times the previously listeners -- called after
-		 * the last "listen" or "time" call -- should live.
+		 * the last "listen" call -- should live.
 		 * @param times	If <code>-1</code> its infinite ( default ) as usual,
 		 * otherwise the listeners will work just for the given number of times
 		 * and after that its automagicaly destroyed.
-		 * @return	The trigger reference for re-use.8
+		 * @return	The trigger reference for re-use.
 		 */
 		public function times( times : Number ) : Trigger
 		{
@@ -104,8 +104,8 @@ package cocktail.core.gunz
 		
 		/**
 		 * Auto destroy all previously listeners -- called after the last
-		 * "listen" or "time" call -- after its first execution, it is, you
-		 * don't need to worry about removing listeners.
+		 * "listen" call -- after its first execution, it is, you don't need
+		 * to worry about removing listeners.
 		 * @return	The trigger reference for re-use.
 		 */
 		public function once() : Trigger
@@ -120,7 +120,7 @@ package cocktail.core.gunz
 		 */
 		public function get listen() : Trigger
 		{
-			_mode = LISTEN;
+			_mode = _LISTEN;
 			_times = -1;
 			_cached = [];
 			return this;
@@ -132,7 +132,7 @@ package cocktail.core.gunz
 		 */
 		public function get unlisten() : Trigger
 		{
-			_mode = UNLISTEN;
+			_mode = _UNLISTEN;
 			return this;
 		}
 		
@@ -148,10 +148,9 @@ package cocktail.core.gunz
 			params : * = null
 		) : void
 		{
-			params;
-			if( _mode == LISTEN )
+			if( _mode == _LISTEN )
 				_collect( type, handler, params );
-			else if( _mode == UNLISTEN )
+			else if( _mode == _UNLISTEN )
 				_purge( type, handler );
 		}
 		
@@ -162,7 +161,7 @@ package cocktail.core.gunz
 		--------------------------------------------------------------------- */
 		
 		/**
-		 * Collect bullet and keep track of Fingers that will pull the Trigger.
+		 * Collect Bullet and keep track of Fingers that will pull the Trigger.
 		 * @param type	Bullet type.
 		 * @param handler	Bullet handler.
 		 * @param params	Bullet params.
@@ -187,8 +186,8 @@ package cocktail.core.gunz
 		
 		/**
 		 * Purge collected Bullet / Fingers.
-		 * @param type	
-		 * @param handler	
+		 * @param type	Bullet type to purge.
+		 * @param handler	Bullet handler to purge.
 		 */
 		private function _purge( type : String, handler : Function ) : void
 		{
