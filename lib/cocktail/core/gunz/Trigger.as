@@ -72,7 +72,7 @@ package cocktail.core.gunz
 			_cached = [];
 			_listeners = [];
 		}
-
+		
 		
 		
 		/* ---------------------------------------------------------------------
@@ -294,7 +294,7 @@ package cocktail.core.gunz
 		
 		
 		/* ---------------------------------------------------------------------
-			PULL
+			PULLING
 		--------------------------------------------------------------------- */
 		
 		/**
@@ -314,6 +314,21 @@ package cocktail.core.gunz
 							finger.pull( bullet );
 				}
 				while( ++i < _listeners.length );
+		}
+		
+		
+		
+		/* ---------------------------------------------------------------------
+			GETTERS
+		--------------------------------------------------------------------- */
+		
+		/**
+		 * Read the listeners length.
+		 * @return	The listeners length.
+		 */
+		public function get length() : int
+		{
+			return _listeners.length;
 		}
 	}
 }
