@@ -26,7 +26,9 @@
 
 package cocktail.core.gunz 
 {
-	import cocktail.core.gunz.Bullet;				
+	import cocktail.core.gunz.Bullet;
+	
+	import flash.utils.describeType;
 
 	/**
 	 * Base Trigger class.
@@ -214,16 +216,37 @@ package cocktail.core.gunz
 		--------------------------------------------------------------------- */
 		
 		/**
-		 * Remove bullets listener, must to be used after an "unlisten" call.
-		 * @param type	If informed, removes all ALL bullets of the given type,
-		 * otherwise <code>null</code> removes all bullets of all types.
+		 * Adds or remove globals bullets listener, must to be used right after
+		 * a "listen" or "unlisten" call.
+		 * @param type	If informed, adds/removes ALL bullets listeners for the
+		 * given type, otherwise <code>null</code> adds/removes listeners for
+		 * all bullets of all types.
+		 * @param handler	Bullet handler (to be used only when listening).
+		 * @param handler	Bullet params (to be used only when listening).
 		 */
-		public function all( type : String = null ) : void
+		public function all(
+			type : String = null,
+			handler : Function = null,
+			params : * = null
+		) : void
 		{
 			var finger : Finger;
+			var method : XML;
 			var i : uint;
 			
-			if( _listeners.length )
+			if( _mode == _LISTEN )
+			{
+				if( type == null )
+				{
+					for each( method in describeType( this )..method.(
+						@declaredBy != "cocktail.core.gunz::Trigger"
+					))
+						this[ method.@name ].apply( this, [ handler, params ] );
+				}
+				else
+					this[ type ].apply( this, [ handler, params ] );
+			}
+			else if( _listeners.length )
 				do
 				{
 					finger = Finger( _listeners[ i ] );
