@@ -26,8 +26,8 @@
 
 package cocktail.core.gunz 
 {
-	import flash.utils.describeType;	
-	
+	import flash.utils.describeType;
+
 	/**
 	 * Base Bullet class.
 	 * @author nybras | nybras@codeine.it
@@ -135,14 +135,19 @@ package cocktail.core.gunz
 			output = "[object "+ described.@name.split( "::" ).pop() +"]\n{\n";
 			props = described..variable; 
 			
+			output += "\ttype : String = "+ type +";\n";
+			output += "\towner : * = "+ owner +";\n";
+			output += "\tparams : * = "+ params +";\n";
+			output += "\n-----";
+			
 			for each( prop in props )
 			{
 				output += "\t"+ prop.@name +" : ";
 				output += prop.@type.split( "::" ).pop() +" = ";
-				output += this[ prop.@name ];
+				output += this[ prop.@name ] + ";\n";
 			}
 			
-			return output +"\n}";
+			return output +"}";
 		}
 	}
 }
