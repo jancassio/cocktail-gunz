@@ -171,7 +171,7 @@ package cocktail.core.gunz
 		private function _collect(
 			type : String,
 			handler : Function,
-			params : Array
+			params : *
 		) : void
 		{
 			 _cached[ _cached.length ] = _listeners[ _listeners.length ] = (
